@@ -2,7 +2,7 @@ version: '3'
 
 services:
   jupyter:
-    build: .
+    image: 'sugimochi/jupyter_env'
     ports:
       - '8888:8888'
     volumes:

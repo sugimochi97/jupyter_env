@@ -7,6 +7,8 @@ RUN wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh \
     tar -zxvf julia-1.6.2-linux-x86_64.tar.gz && \
     rm -f Anaconda3-2021.05-Linux-x86_64.sh julia-1.6.2-linux-x86_64.tar.gz
 ENV PATH /opt/anaconda3/bin:/opt/julia-1.6.2/bin:$PATH
-RUN julia -e 'using Pkg; Pkg.add("IJulia"); using IJulia'
+RUN julia -e 'using Pkg; Pkg.add("IJulia"); using IJulia' && \ 
+    pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib && \
+    pip install discord.py
 WORKDIR /
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root", "--LabApp.token=''"]
